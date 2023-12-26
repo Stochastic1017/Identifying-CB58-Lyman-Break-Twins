@@ -81,4 +81,4 @@ standardize_minkowski <- function(cB58, spectra, p)
 
 The standardized template cB58 spectra looks as follows:
 
-<img src="https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/tree/main/images/Standardized_cB58.png" width="500" height="700">
+<img src="https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/images/Standardized_cB58.png" width="700" height="500">
