@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This project involves the identification of a novel gravitationally lensed Lyman-break galaxy that closely mirrors the target spectrum CB58. Lyman-break galaxies are those undergoing active star formation at high redshifts, selected based on the distinct appearance of the galaxy in various imaging filters, influenced by the position of the Lyman limit. The spectral data were captured through the Sloan Digital Sky Survey (SDSS), a significant multi-spectral imaging and spectroscopic redshift survey conducted with a dedicated 2.5-m wide-angle optical telescope at the Apache Point Observatory in New Mexico, United States. The dataset was generously provided by Christy Tremonti, an astronomer affiliated with the University of Wisconsin - Madison and a member of the Sloan Digital Sky Survey III (SDSS-III) collaboration. There are approximately 2.5 million spectral data (in the form of `.fits` files $\approx$ 281 gigabytes), and the top ten closest spectra were found by calculating red-shifted distance metrics for each spectral data in parallel using University of Wisconsin - Madison's Center For High-Throughput Computing via HTCondor. 
+This project involves the identification of a novel gravitationally lensed Lyman-break galaxy that closely mirrors the target spectrum CB58. Lyman-break galaxies are those undergoing active star formation at high redshifts, selected based on the distinct appearance of the galaxy in various imaging filters, influenced by the position of the Lyman limit. The spectral data were captured through the Sloan Digital Sky Survey (SDSS), a significant multi-spectral imaging and spectroscopic redshift survey conducted with a dedicated 2.5-m wide-angle optical telescope at the Apache Point Observatory in New Mexico, United States. The dataset was generously provided by Christy Tremonti, an astronomer affiliated with the University of Wisconsin - Madison and a member of the Sloan Digital Sky Survey III (SDSS-III) collaboration. There are approximately 2.5 million spectral data (in the form of $\approx$ 281 gigabytes `.fits` files), and the top ten closest spectra were found by calculating red-shifted distance metrics for each spectral data in parallel using University of Wisconsin - Madison's Center For High-Throughput Computing via HTCondor. 
 
 ## Reading and interpreting .fits files in R
 
@@ -130,7 +130,7 @@ if(length(args) == 2){
   stop()
 }
 ```
-The corresponding .sub file to send the 2459 parallel jobs to CHTC clusters (called [`condor.sub`]())
+The corresponding .sub file to send the 2459 parallel jobs to CHTC clusters (called [`condor.sub`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/condor/condor.sub))
 
 ``` shell
 universe = vanilla
