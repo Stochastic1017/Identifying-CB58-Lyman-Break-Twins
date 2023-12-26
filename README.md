@@ -159,5 +159,5 @@ queue file from files
 
 ## Condor output and logs
 
-The [`output`]() and [`log`]() folders for the first 50 jobs run in parallel
+The [`output`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/tree/main/output) and [`log`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/tree/main/log) files can be found for the first 50 jobs run in parallel.
 
