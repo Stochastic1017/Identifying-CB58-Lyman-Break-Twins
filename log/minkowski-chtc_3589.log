@@ -1,0 +1,65 @@
+000 (248730.003.000) 2023-12-07 17:43:32 Job submitted from host: <128.104.100.148:9618?addrs=128.104.100.148-9618+[2607-f388-107c-501-216-3eff-feb2-bc11]-9618&alias=learn.chtc.wisc.edu&noUDP&sock=schedd_1351356_64bc>
+...
+040 (248730.003.000) 2023-12-07 17:44:12 Started transferring input files
+	Transferring to host: <128.105.69.215:9618?addrs=128.105.69.215-9618+[2607-f388-2200-100-eaeb-d3ff-fe40-154c]-9618&alias=e2598.chtc.wisc.edu&noUDP&sock=slot1_151_3266905_dc49_68810>
+...
+040 (248730.003.000) 2023-12-07 17:44:28 Finished transferring input files
+...
+001 (248730.003.000) 2023-12-07 17:44:30 Job executing on host: <128.105.69.215:9618?addrs=128.105.69.215-9618+[2607-f388-2200-100-eaeb-d3ff-fe40-154c]-9618&alias=e2598.chtc.wisc.edu&noUDP&sock=startd_16224_e49d>
+	SlotName: slot1_151@e2598.chtc.wisc.edu
+	CondorScratchDir = "/var/lib/condor/execute/slot1/dir_1085967"
+	Cpus = 2
+	Disk = 1458998
+	IoHeavy = 0
+	Memory = 512
+...
+006 (248730.003.000) 2023-12-07 17:44:38 Image size of job updated: 446480
+	437  -  MemoryUsage of job (MB)
+	446476  -  ResidentSetSize of job (KB)
+...
+006 (248730.003.000) 2023-12-07 17:49:38 Image size of job updated: 456188
+	442  -  MemoryUsage of job (MB)
+	452112  -  ResidentSetSize of job (KB)
+...
+006 (248730.003.000) 2023-12-07 17:54:38 Image size of job updated: 456188
+	446  -  MemoryUsage of job (MB)
+	455908  -  ResidentSetSize of job (KB)
+...
+006 (248730.003.000) 2023-12-07 17:59:39 Image size of job updated: 456632
+	446  -  MemoryUsage of job (MB)
+	456376  -  ResidentSetSize of job (KB)
+...
+006 (248730.003.000) 2023-12-07 18:09:41 Image size of job updated: 456876
+	446  -  MemoryUsage of job (MB)
+	456620  -  ResidentSetSize of job (KB)
+...
+006 (248730.003.000) 2023-12-07 18:14:41 Image size of job updated: 456880
+	446  -  MemoryUsage of job (MB)
+	456628  -  ResidentSetSize of job (KB)
+...
+006 (248730.003.000) 2023-12-07 18:19:13 Image size of job updated: 457132
+	446  -  MemoryUsage of job (MB)
+	456628  -  ResidentSetSize of job (KB)
+...
+040 (248730.003.000) 2023-12-07 18:19:13 Started transferring output files
+...
+040 (248730.003.000) 2023-12-07 18:19:13 Finished transferring output files
+...
+005 (248730.003.000) 2023-12-07 18:19:13 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:34:18, Sys 0 00:00:04  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:34:18, Sys 0 00:00:04  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	89790  -  Run Bytes Sent By Job
+	123333792  -  Run Bytes Received By Job
+	89790  -  Total Bytes Sent By Job
+	123333792  -  Total Bytes Received By Job
+	Partitionable Resources :     Usage  Request Allocated 
+	   Cpus                 :      0.99        2         2 
+	   Disk (KB)            : 505792      512000   1458998 
+	   IoHeavy              :                            0 
+	   Memory (MB)          :    446         500       512 
+
+	Job terminated of its own accord at 2023-12-08T00:19:13Z with exit-code 0.
+...
