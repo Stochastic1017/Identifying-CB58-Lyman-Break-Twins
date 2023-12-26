@@ -1,5 +1,3 @@
-## Name: Shrivats Sudhir
-## Email: ssudhir2@wisc.edu
 
 ## Initializing console
 print('Initializing Console ...')
