@@ -2,7 +2,9 @@
 
 ## Introduction
 
-This project involves the identification of a novel gravitationally lensed Lyman-break galaxy that closely mirrors the target spectrum CB58. Lyman-break galaxies are those undergoing active star formation at high redshifts, selected based on the distinct appearance of the galaxy in various imaging filters, influenced by the position of the Lyman limit. The spectral data were captured through the Sloan Digital Sky Survey (SDSS), a significant multi-spectral imaging and spectroscopic redshift survey conducted with a dedicated 2.5-m wide-angle optical telescope at the Apache Point Observatory in New Mexico, United States. The dataset was generously provided by Christy Tremonti, an astronomer affiliated with the University of Wisconsin - Madison and a member of the Sloan Digital Sky Survey III (SDSS-III) collaboration. There are approximately 2.5 million spectral data (in the form of $\approx$ 281 gigabytes `.fits` files), and the top ten closest spectra were found by calculating red-shifted distance metrics for each spectral data in parallel using University of Wisconsin - Madison's Center For High-Throughput Computing via HTCondor (further details can be found [here](https://chtc.cs.wisc.edu/)). 
+<p align="justify">
+This project involves the identification of a novel gravitationally lensed Lyman-break galaxy that closely mirrors the target spectrum CB58. Lyman-break galaxies are those undergoing active star formation at high redshifts, selected based on the distinct appearance of the galaxy in various imaging filters, influenced by the position of the Lyman limit. The spectral data were captured through the Sloan Digital Sky Survey (SDSS), a significant multi-spectral imaging and spectroscopic redshift survey conducted with a dedicated 2.5-m wide-angle optical telescope at the Apache Point Observatory in New Mexico, United States. The dataset was generously provided by Christy Tremonti, an astronomer affiliated with the University of Wisconsin - Madison and a member of the Sloan Digital Sky Survey III (SDSS-III) collaboration. There are approximately 2.5 million spectral data ($\approx$ 281 gigabytes .fits files), and we are interested the ten noisy spectras that most closely resemble the template spectra by calculating red-shifted distance metrics for each spectral data in parallel using University of Wisconsin - Madison's Center For High-Throughput Computing via HTCondor. 
+</p>
 
 ## Reading and interpreting .fits files in R
 
@@ -76,10 +78,11 @@ standardize_minkowski <- function(cB58, spectra, p)
   return (c(min(dist), which(dist == min(dist))))
 }
 ```
+
 To allow the code to loop through each .fits file in a directory, and write an output .csv file whose name is the data directory name in the following format:
-* `distance` : Measure of the distance from this spectrum to the template.
-* `i` : red-shifted index in the spectrum at which your alignment with the template begins.
-* `spectrumID` : the spectrum ID, e.g., spec-1353-53083-0579.fits
+  * `distance` : Measure of the distance from this spectrum to the template.
+  * `i` : red-shifted index in the spectrum at which your alignment with the template begins.
+  * `spectrumID` : the spectrum ID, e.g., spec-1353-53083-0579.fits
 
 ``` r
 files <- list.files(dir, pattern = 'fit*') # save all files as a list
