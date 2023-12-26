@@ -157,4 +157,7 @@ request_disk = 500MB
 queue file from files
 ```
 
-## Output
+## Output, Error, and Logs
+
+The [`output`](), [`error`](), and [`log`]() folders for the first 50 jobs run in parallel
+
