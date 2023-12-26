@@ -157,7 +157,7 @@ request_disk = 500MB
 queue file from files
 ```
 
-## Output, Error, and Logs
+## Condor output and logs
 
-The [`output`](), [`error`](), and [`log`]() folders for the first 50 jobs run in parallel
+The [`output`]() and [`log`]() folders for the first 50 jobs run in parallel
 
