@@ -117,6 +117,20 @@ Various bash/shell scripts were written that performed various tasks before, dur
 
 ## Condor Submit Script
 
+We first write `minkowski_spectre.R` such that it can take command terminal arguements as inputs:
+
+``` r
+print('Inputing command line prompts ...')
+args = (commandArgs(trailingOnly = TRUE))
+if(length(args) == 2){
+  template = args[1]
+  dir = args[2]
+} else {
+  cat('usage: Rscript minkowski_spectra.R <template spectrum> <data directory>\n', file = stderr())
+  stop()
+}
+```
+
 ``` shell
 universe = vanilla
 log    = log/minkowski-chtc_$(file).log
@@ -129,7 +143,11 @@ arguments = cB58_Lyman_break.fit $(file)
 
 should_transfer_files = YES
 when_to_transfer_output = ON_EXIT
-transfer_input_files = http://proxy.chtc.wisc.edu/SQUID/chtc/el8/R413.tar.gz, https://pages.stat.wisc.edu/~jgillett/DSCP/CHTC/callingR/packages_FITSio.tar.gz, ~/data/cB58_Lyman_break.fit, ~/data/tgz/$(file).tgz, minkowski_spectra.R
+transfer_input_files = http://proxy.chtc.wisc.edu/SQUID/chtc/el8/R413.tar.gz,
+                       https://pages.stat.wisc.edu/~jgillett/DSCP/CHTC/callingR/packages_FITSio.tar.gz,
+                       ~/data/cB58_Lyman_break.fit,
+                       ~/data/tgz/$(file).tgz,
+                       minkowski_spectra.R
 
 request_cpus = 2
 request_memory = 500MB
