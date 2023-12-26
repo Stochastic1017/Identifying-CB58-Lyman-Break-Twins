@@ -115,4 +115,25 @@ Various bash/shell scripts were written that performed various tasks before, dur
 3. [`merge.sh`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/shell/merge.sh): Merges all 2459 .csv files into one, and writes the best 100 spectra to `100_minkowski_best.csv`. This is done **after** all the parallel `executable.sh` jobs are run.
 4. [`pull_fits.sh`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/shell/pull_fits.sh): Applies regex to extract the respective .tgz files and spectrumID from `100_minkowski_best.csv` and the files are copied to the directory `~/minkowski/best`. This is dome **after** running `merge.sh`.
 
+## Condor Submit Script
 
+``` shell
+universe = vanilla
+log    = log/minkowski-chtc_$(file).log
+error  = error/minkowski-chtc_$(file).err
+output = output/minkwoski-chtc_$(file).out
+
+executable = ./executable.sh
+
+arguments = cB58_Lyman_break.fit $(file)
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = http://proxy.chtc.wisc.edu/SQUID/chtc/el8/R413.tar.gz, https://pages.stat.wisc.edu/~jgillett/DSCP/CHTC/callingR/packages_FITSio.tar.gz, ~/data/cB58_Lyman_break.fit, ~/data/tgz/$(file).tgz, minkowski_spectra.R
+
+request_cpus = 2
+request_memory = 500MB
+request_disk = 500MB
+
+queue file from files
+```
