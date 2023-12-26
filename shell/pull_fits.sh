@@ -1,8 +1,8 @@
 #!/bin/bash
 
 IFS=$'\n'
-data_directory="/home/groups/STAT_DSCP/boss/tgz"
-output_directory="/home/ssudhir2/hw4"
+data_directory="~/tgz"
+output_directory="~/minkowski"
 
 for filename in $(tail -n +2 100_minkowski_best.csv | head -n 10 | cut -d ',' -f 3); do
 
