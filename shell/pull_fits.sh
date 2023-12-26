@@ -2,7 +2,7 @@
 
 IFS=$'\n'
 data_directory="~/tgz"
-output_directory="~/minkowski"
+output_directory="~/minkowski/best"
 
 for filename in $(tail -n +2 100_minkowski_best.csv | head -n 10 | cut -d ',' -f 3); do
 
