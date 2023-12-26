@@ -1,0 +1,81 @@
+---
+title: "cB58 Spectrum Minkowski Distances"
+author: "S. Sudhir"
+date: "2023-12-08"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+if (require("FITSio"))
+{
+  print("Loading package FITSio.")
+} else
+{
+  print("Failed loading package FITSio.")
+}
+
+## Standardize flux-values to match it to a gaussian distribution. (making it scale invariant)
+standardize <- function(flux)
+{
+  return (scale(flux, center = mean(flux), scale = sd(flux)))
+}
+
+## Defining minkowski distance metric
+minkowski  <- function(x, y, p)
+{
+  return (sum(abs((x-y)^p))^(1/p))
+}
+
+## Function to compute distance between two flux
+standardize_minkowski <- function(cB58, spectra, p)
+{
+  n <- length(cB58)
+  m <- length(spectra)
+  dist  <-  c()
+
+  if (n > m) # cB58 is larger than other spectra
+  {
+    next
+  }
+  
+  else (m > n)
+  {
+    cB58 <- standardize(cB58)
+    for (i in 1:(m-n+1))
+    {
+      temp  <- minkowski(cB58, standardize(spectra[i:(i+n-1)])[, 1], p)
+      dist  <- append(dist, temp)
+    }
+  }
+  return (c(min(dist), which(dist == min(dist))))
+}
+```
+
+```{r cars}
+df <- read.csv('100_minkowski_best.csv')
+print(head(df, 10))
+```
+
+# Plotting cB58 template spectrum
+
+```{r}
+cB58 <- readFrameFromFITS('minkowski/cB58_Lyman_break.fit')
+plot(standardize(cB58$FLUX), type = 'l', col = 'red', main = 'cB58 template spectrum', xlab = 'Index', ylab = 'flux')
+```
+
+# Plotting spectrum closest by distance to cB58
+
+```{r, echo=FALSE}
+for (j in 1:10)
+{
+  path_to_file <- paste(sep="", "minkowski/", df$spectrumID[j])
+  noisy <- readFrameFromFITS(path_to_file)
+  padded_cB58 <- rep(NA, length(standardize(noisy$flux)))
+  padded_cB58[df$i[j]:(df$i[j] + length(cB58$FLUX) - 1)] <- standardize(cB58$FLUX)
+
+  main_title <- paste(df$spectrumID[j], "vs cB58 template (shifted", df$i[j], "units)")
+  
+  plot(standardize(noisy$flux), type = 'l', col = 'black', main = main_title, ylab = 'standardized flux', ylim = c(-5, 5)); lines(padded_cB58, col = 'red'); legend("topright", legend = c("Noisy Spectrum", "cB58 Template"), col = c("black", "red"), lty = 1)
+}
+```
+
