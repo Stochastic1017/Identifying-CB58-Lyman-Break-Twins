@@ -110,7 +110,9 @@ The 2.5 million .fits files were written into 2500 .tgz files, where each .tar f
 
 Various bash/shell scripts were written that performed various tasks before, during, and after running parallel jobs to find the top 10 closest spectras to cB58:
 
-1. [`list.sh`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/shell/list.sh): Finds out the names of all .tgz files in the directory `~/data/tgz`, and writes them in the directory `~/minkowski/files`. This is done BEFORE job is submitted via HTCondor.
-2. [`executable.sh`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/shell/executable.sh): Unpacks `R` (4.1.3), unpacks the `FITSio` package, tells bash where `R` and its packages are, unpacks the current .tgz file (like 3586.tgz), and runs [`minkowski_spectra.R`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/R/minkowski_spectra.R) on that directory (like 3586). This is done DURING the job, and at each compute node of the CHTC.
-3. [`merge.sh`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/shell/merge.sh): merges all 2459 .csv files into one, and writes the best 100 spectra to `100_minkowski_best.csv`. This is done AFTER all the parallel jobs are run.
-4. [`pull_fits.sh`]():
+1. [`list.sh`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/shell/list.sh): Finds out the names of all .tgz files in the directory `~/data/tgz`, and writes them in the directory `~/minkowski/files`. This is done **before** job is submitted via HTCondor.
+2. [`executable.sh`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/shell/executable.sh): Unpacks `R` (4.1.3), unpacks the `FITSio` package, tells bash where `R` and its packages are, unpacks the current .tgz file (like 3586.tgz), and runs [`minkowski_spectra.R`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/R/minkowski_spectra.R) on that directory (like 3586). This is done **during** the job, in parallel at each compute node of the CHTC, after running `list.sh`.
+3. [`merge.sh`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/shell/merge.sh): Merges all 2459 .csv files into one, and writes the best 100 spectra to `100_minkowski_best.csv`. This is done **after** all the parallel `executable.sh` jobs are run.
+4. [`pull_fits.sh`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/shell/pull_fits.sh): Applies regex to extract the respective .tgz files and spectrumID from `100_minkowski_best.csv` and the files are copied to the directory `~/minkowski/best`. This is dome **after** running `merge.sh`.
+
+
