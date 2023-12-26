@@ -6,7 +6,7 @@ This project involves the identification of a novel gravitationally lensed Lyman
 
 ## Reading and interpreting .fits files in R
 
-The R library `FITSio` contains the function `ReadFrameFromFITS()` that allows us to load .fits as a dataframe in R. Supposing we wish to load an `arbitrary.fits` as a dataframe, we write the following code:
+The `R` library `FITSio` contains the function `ReadFrameFromFITS()` that allows us to load .fits as a dataframe in R. Supposing we wish to load an `arbitrary.fits` as a dataframe, we write the following code:
 
 ``` r
 require("FITSio")
@@ -157,7 +157,8 @@ request_disk = 500MB
 queue file from files
 ```
 
-## Condor output and logs
+The [`output`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/tree/main/output) and [`log`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/tree/main/log) files can be found for the first 50 jobs run in parallel. 
 
-The [`output`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/tree/main/output) and [`log`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/tree/main/log) files can be found for the first 50 jobs run in parallel.
+## Output Visualization and Interpretation
+
 
