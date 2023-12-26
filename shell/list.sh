@@ -1,9 +1,8 @@
 #!/bin/bash
 
-# change directiry temporarily
 cd ~/data/tgz
 
-for file in *.tgz; do
+for file in [0-9][0-9][0-9][0-9].tgz; do
     echo "${file%%.*}"
 done > ~/minkowski/files
 
