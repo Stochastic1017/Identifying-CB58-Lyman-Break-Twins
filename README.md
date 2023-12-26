@@ -77,9 +77,9 @@ standardize_minkowski <- function(cB58, spectra, p)
 }
 ```
 To allow the code to loop through each .fits file in a directory, and write an output .csv file whose name is the data directory name in the following format:
-* **distance**: your measure of the distance from this spectrum to the template.
-* **i**: the index in the spectrum at which your alignment with the template begins (red-shifted units).
-* **spectrumID**: the spectrum ID, e.g., spec-1353-53083-0579.fits
+* `distance`: your measure of the distance from this spectrum to the template.
+* `i`: the index in the spectrum at which your alignment with the template begins (red-shifted units).
+* `spectrumID`: the spectrum ID, e.g., spec-1353-53083-0579.fits
 
 ``` r
 files <- list.files(dir, pattern = 'fit*') # save all files as a list
