@@ -1,3 +1,82 @@
 # Finding the Cosmic Needle: Unraveling CB58 Resemblance in a Galactic Haystack
 
-This project involves finding a new gravitationally-lensed Lyman-break galaxy that most closely resembles the target spectrum CB58. Lyman-break galaxy are a star-forming galaxy at high redshift that are selected using the differing appearance of the galaxy in several imaging filters due to the position of the Lyman limit. The spectral signals were captured using SDSS (Sloan Digital Sky Survey) which is a major multi-spectral imaging and spectroscopic redshift survey using a dedicated 2.5-m wide-angle optical telescope at Apache Point Observatory in New Mexico, United States. The data was provided by University of Wisconsin - Madison astronomer Christy Tremonti, also a member of the Sloan Digital Sky Survey III (SDSS-III) collaboration.
+## Introduction
+
+This project involves the identification of a novel gravitationally lensed Lyman-break galaxy that closely mirrors the target spectrum CB58. Lyman-break galaxies are those undergoing active star formation at high redshifts, selected based on the distinct appearance of the galaxy in various imaging filters, influenced by the position of the Lyman limit. The spectral data were captured through the Sloan Digital Sky Survey (SDSS), a significant multi-spectral imaging and spectroscopic redshift survey conducted with a dedicated 2.5-m wide-angle optical telescope at the Apache Point Observatory in New Mexico, United States. The dataset was generously provided by Christy Tremonti, an astronomer affiliated with the University of Wisconsin - Madison and a member of the Sloan Digital Sky Survey III (SDSS-III) collaboration. There are approximately 2.5 million spectral data (in the form of `.fits` files $\approx$ 57 gigabytes), and the top ten closest spectra were found by calculating red-shifted distance metrics for each spectral data in parallel using University of Wisconsin - Madison's Center For High-Throughput Computing. 
+
+## Reading and interpreting .fits files in R
+
+The R library `FITSio` contains the function `ReadFrameFromFITS()` that allows us to load .fits as a dataframe in R. Supposing we wish to load an `arbitrary.fits` as a dataframe, we write the following code:
+
+``` r
+require("FITSio")
+df <- readFrameFromFITS("arbitrary.fits")
+print(df)
+```
+
+The data frame for each of the spectra has these following columns:
+
+1. `flux` is light intensity at a given wavelength. It is theoretically nonnegative, but with noise it can be negative.
+2. `loglam `is `log(x=wavelength, base=10)`, so `wavelength = 10^loglam`. 
+3. `ivar` (“inverse variance”) is $\frac{1}{S_i^2}$ where $S_i^2$ is an estimated variance of the $i$-th flux.
+4. `and_mask` is 0 for a good observation. We exclude data with nonzero `and_mask`.
+5. `or_mask` is 0 for a good observation.
+6. `wdisp` is the resolution of the spectrograph at that wavelength.
+7. `sky` is the spectrum of the sky, mostly already subtracted out from flux.
+8. `model` is SDSS’s hypothesis of the true spectrum, shifted to the redshift of the object.
+
+We use only `flux` and its corresponding `index` for this project. 
+
+## Standardization
+
+We standardize all `flux` values as follows before computing a distance metric:
+$$z = \frac{x - \mu}{\sigma} \sim N(0,1)$$
+
+``` r
+standardize <- function(flux)
+{
+  return (scale(flux, center = mean(flux), scale = sd(flux)))
+}
+```
+
+## Distance Metric
+
+We implement Minkowski distances with p=2, i.e., euclidean distances at each flux of a spectra red-shifted.
+
+``` r
+minkowski  <- function(x, y, p)
+{
+  return (sum(abs((x-y)^p))^(1/p))
+}
+```
+
+Our target spectra (cB58) has 2181 size vector values of `flux`. For noisy spectras that we compare to cB58, if the vector size is smaller than 2181, it is ignored. Else we compute distances at each red-shifted cB58 onto that noisy spectrum until we find the minimum distance and save the result.
+
+``` r
+standardize_minkowski <- function(cB58, spectra, p)
+{
+  n <- length(cB58)
+  m <- length(spectra)
+  dist  <-  c()
+
+  if (n > m) # cB58 is larger than the other spectra
+  {
+    next
+  }
+  
+  else (m > n)
+  {
+    cB58 <- standardize(cB58)
+    for (i in 1:(m-n+1)) # Red-shifting at each index
+    {
+      temp  <- minkowski(cB58, standardize(spectra[i:(i+n-1)])[, 1], p)
+      dist  <- append(dist, temp)
+    }
+  }
+  return (c(min(dist), which(dist == min(dist))))
+}
+```
+
+## Visualization
+
+The standardized template cB58 spectra looks as follows:
