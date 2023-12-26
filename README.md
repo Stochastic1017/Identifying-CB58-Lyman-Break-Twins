@@ -91,5 +91,5 @@ The 2.5 million .fits files were written into 2500 .tgz files, where each .tar f
 
 Various bash/shell scripts were written that performed various tasks before (pre) and after (post) running parallel jobs:
 
-Pre 1. `list.sh`: Finds out the names of all tar files in the directory (`~/data/tgz`), and writes them as directory `~/minkowski/files`.
+Pre 1. [`list.sh`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/shell/list.sh): Finds out the names of all tar files in the directory (`~/data/tgz`), and writes them as directory `~/minkowski/files`.
 
