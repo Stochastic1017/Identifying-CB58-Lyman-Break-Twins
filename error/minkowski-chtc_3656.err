@@ -1,0 +1,5 @@
+Loading required package: FITSio
+Error in standardize_minkowski(cB58$FLUX, noisy$flux, p = 2) : 
+  no loop for break/next, jumping to top level
+Calls: rbind -> rbind -> standardize_minkowski
+Execution halted
