@@ -180,4 +180,23 @@ The top ten cB58 resemblance noisy spectras are given below:
 | 41.714083619 | 1164         | spec-4221-55443-0556.fits |
 | 42.019932552 | 356          | spec-3866-55623-0134.fits |
 
+<img src="https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/images/spec-6052-56092-0294.png" width="700" height="500">
+
+<img src="https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/images/spec-5436-56015-0440.png" width="700" height="500">
+
+<img src="https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/images/spec-6452-56366-0270.png" width="700" height="500">
+
+<img src="https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/images/spec-5783-56017-0903.png" width="700" height="500">
+
+<img src="https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/images/spec-3804-55267-0936.png" width="700" height="500">
+
+<img src="https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/images/spec-5172-56071-0705.png" width="700" height="500">
+
+<img src="https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/images/spec-6184-56267-0854.png" width="700" height="500">
+
+<img src="https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/images/spec-3665-55247-0718.png" width="700" height="500">
+
+<img src="https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/images/spec-4221-55443-0556.png" width="700" height="500">
+
+<img src="https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/images/spec-3866-55623-0134.png" width="700" height="500">
 
