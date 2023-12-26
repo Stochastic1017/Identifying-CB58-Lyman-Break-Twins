@@ -1,4 +1,4 @@
-# Finding the Cosmic Needle: Unraveling CB58 Resemblance in a Galactic Haystack
+# Finding the Cosmic Needle: Unraveling CB58 Resemblance in a Galactic Haystack Using High-Throughput Computing
 
 ## Introduction
 
