@@ -49,6 +49,7 @@ minkowski  <- function(x, y, p)
   return (sum(abs((x-y)^p))^(1/p))
 }
 ```
+
 Our target spectra (cB58) has 2181 size vector values of `flux`. For noisy spectras that we compare to cB58, if the vector size is smaller than 2181, it is ignored. Else we compute distances at each red-shifted cB58 onto that noisy spectrum until we find the minimum distance and save the result.
 
 ``` r
@@ -75,6 +76,25 @@ standardize_minkowski <- function(cB58, spectra, p)
   return (c(min(dist), which(dist == min(dist))))
 }
 ```
+To allow the code to loop through each .fits file in a directory, and write an output .csv file whose name is the data directory name in the following format:
+* **distance**: your measure of the distance from this spectrum to the template.
+* **i**: the index in the spectrum at which your alignment with the template begins (red-shifted units).
+* **spectrumID**: the spectrum ID, e.g., spec-1353-53083-0579.fits
+
+``` r
+files <- list.files(dir, pattern = 'fit*') # save all files as a list
+
+for (file in files)
+{
+  cat("On File:", file, "\n")
+  path_to_file = paste(sep = "", sprintf('%s/', dir), file)
+  noisy = readFrameFromFITS(path_to_file) # Interested spectrum in this iteration
+  result  <- rbind(result, c(standardize_minkowski(cB58$FLUX, noisy$flux, p = 2), file))
+}
+
+result <- na.omit(result)
+write.csv(result, file = sprintf("%s.csv", dir), row.names = FALSE)
+```
 
 ## Visualizing Template cB58 Spectrum
 
@@ -91,5 +111,5 @@ The 2.5 million .fits files were written into 2500 .tgz files, where each .tar f
 Various bash/shell scripts were written that performed various tasks before, during, and after running parallel jobs to find the top 10 closest spectras to cB58:
 
 1. [`list.sh`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/shell/list.sh): Finds out the names of all .tgz files in the directory `~/data/tgz`, and writes them in the directory `~/minkowski/files`. This is done BEFORE job is submitted via HTCondor.
-2. [`executable.sh`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/shell/executable.sh): Unpacks `R` (4.1.3), unpacks the `FITSio` package, tells bash where `R` and its packages are,
-unpacks the current .tgz file (like 3586.tgz), and runs [`minkowski_spectra.R`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/R/minkowski_spectra.R) on that directory (like 3586). This is done DURING the job, and at each compute node of the CHTC.
+2. [`executable.sh`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/shell/executable.sh): Unpacks `R` (4.1.3), unpacks the `FITSio` package, tells bash where `R` and its packages are, unpacks the current .tgz file (like 3586.tgz), and runs [`minkowski_spectra.R`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/R/minkowski_spectra.R) on that directory (like 3586). This is done DURING the job, and at each compute node of the CHTC.
+3. [`merge.sh`](): merges all 2459 .csv files into one, and writes the best 100 spectra to `100_minkowski_best.csv`. This is done AFTER all the parallel jobs are run.
