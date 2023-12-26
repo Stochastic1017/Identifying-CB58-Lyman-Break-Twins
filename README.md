@@ -104,7 +104,7 @@ The standardized template cB58 spectra looks as follows:
 
 ## Data Preprocessing
 
-The 2.5 million .fits files were written into 2500 .tgz files, where each .tar file contained approximately 2459 .fits files ($\approx$ 100 mb each), and the data was stored in one of CHTC's approved distinct location (located in `~/data/tgz`). The template spectra is named as `cB58_Lyman_break.fit` (located in `~/data`), and each of the .tar file is of the form `[0-9][0-9][0-9][0-9].tgz` (example 5377.tgz).
+The 2.5 million .fits files were written into 2459 .tgz files, where each .tar file contained approximately 1000 .fits files ($\approx$ 100 mb each), and the data was stored in one of CHTC's approved distinct location (located in `~/data/tgz`). The template spectra is named as `cB58_Lyman_break.fit` (located in `~/data`), and each of the .tar file is of the form `[0-9][0-9][0-9][0-9].tgz` (example 5377.tgz).
 
 ## Bash and Shell Scripts
 
@@ -117,7 +117,7 @@ Various bash/shell scripts were written that performed various tasks before, dur
 
 ## Condor Submit Script
 
-We first write `minkowski_spectre.R` such that it can take command terminal arguements as inputs:
+We first write `minkowski_spectre.R` such that it can take command terminal arguements as inputs of the form `<template spectrum>` (cB58_Lyman_break.fit) `<data directory>` (unpacked .tgz file):
 
 ``` r
 print('Inputing command line prompts ...')
@@ -130,6 +130,7 @@ if(length(args) == 2){
   stop()
 }
 ```
+The corresponding .sub file to send the 2459 parallel jobs to CHTC clusters (called [`condor.sub`]())
 
 ``` shell
 universe = vanilla
