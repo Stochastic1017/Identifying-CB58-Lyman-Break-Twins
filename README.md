@@ -1,4 +1,4 @@
-# Finding the Cosmic Needle: Unraveling CB58 Resemblance in a Galactic Haystack Using High-Throughput Computing
+# Finding the Cosmic Needle: Unraveling cB58 Resemblance in a Galactic Haystack Using High-Throughput Computing
 
 ## Introduction
 
@@ -164,5 +164,20 @@ queue file from files
 The [`output`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/tree/main/output) and [`log`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/tree/main/log) files can be found for the first 50 jobs run in parallel. 
 
 ## Output Visualization and Interpretation
+
+The top ten cB58 resemblance noisy spectras are given below:
+
+| distance     | i            | spectrumID   |
+|--------------|--------------|--------------|
+| 39.778417825 | 1257         | spec-6052-56092-0294.fits |
+| 39.949355491 | 589          | spec-5436-56015-0440.fits |
+| 40.136308215 | 185          | spec-6452-56366-0270.fits |
+| 40.722211411 | 1526         | spec-5783-56017-0903.fits |
+| 41.189031229 | 29           | spec-3804-55267-0936.fits |
+| 41.511091326 | 1080         | spec-5172-56071-0705.fits |
+| 41.526470563 | 754          | spec-6184-56267-0854.fits |
+| 41.552732019 | 1156         | spec-3665-55247-0718.fits |
+| 41.714083619 | 1164         | spec-4221-55443-0556.fits |
+| 42.019932552 | 356          | spec-3866-55623-0134.fits |
 
 
