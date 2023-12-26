@@ -91,5 +91,5 @@ The 2.5 million .fits files were written into 2500 .tgz files, where each .tar f
 Various bash/shell scripts were written that performed various tasks before, during, and after running parallel jobs to find the top 10 closest spectras to cB58:
 
 1. [`list.sh`](https://github.com/Stochastic1017/Identifying-CB58-Lyman-Break-Twins/blob/main/shell/list.sh): Finds out the names of all .tgz files in the directory `~/data/tgz`, and writes them in the directory `~/minkowski/files`. This is done BEFORE job is submitted via HTCondor.
-2. [`executable.sh`](): Unpacks `R` (4.1.3), unpacks the `FITSio` package, tells bash where R is, tells R where itself and its libraries are,
-unpacks the current .tgz file (like 3586.tgz), and runs [`minkowski_spectra.R`]() on that directory (like 3586).
+2. [`executable.sh`](): Unpacks `R` (4.1.3), unpacks the `FITSio` package, tells bash where `R` and its packages are,
+unpacks the current .tgz file (like 3586.tgz), and runs [`minkowski_spectra.R`]() on that directory (like 3586). This is done DURING the job, and at each compute node of the CHTC.
